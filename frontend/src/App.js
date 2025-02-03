@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert, Card, Tabs, Tab, InputGroup, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaIndustry, FaCogs, FaChartLine, FaInfo, FaCopy } from 'react-icons/fa';
+import { FaIndustry, FaCogs, FaInfo, FaCopy } from 'react-icons/fa';
 
 // Conversion utility functions
 const convertBinaryToDecimal = (binary) => {
@@ -44,11 +44,6 @@ const convertBinaryToFloat = (binary) => {
 function App() {
   const [binary, setBinary] = useState('');
   const [mode, setMode] = useState('STANDARD');
-  const [result, setResult] = useState({
-    hex: '',
-    decimal: '',
-    binary: ''
-  });
   const [conversionTable, setConversionTable] = useState(null);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('conversion');
@@ -83,8 +78,6 @@ function App() {
             binary: binary
           };
       }
-
-      setResult(conversionResult);
       
       // Generate conversion table
       const table = [
@@ -97,7 +90,6 @@ function App() {
       setError(null);
     } catch (err) {
       setError(err.message);
-      setResult({ hex: '', decimal: '', binary: '' });
       setConversionTable(null);
     }
   };
