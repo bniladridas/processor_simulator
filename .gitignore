@@ -1,0 +1,42 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Frontend dependencies and build
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# C++ compiled files
+*.o
+*.out
+*.a
+*.lib
+
+# Dependency directories
+vendor/
+third_party/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
