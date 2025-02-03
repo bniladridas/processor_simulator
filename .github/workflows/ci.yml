@@ -1,39 +1,79 @@
 name: CI/CD Pipeline
 
-on:
+on: 
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Set up C++ environment
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up C++ compiler
       uses: actions/setup-cpp@v1
       with:
-        cpp-version: '17'
-    
+        compiler: gcc
+        version: 11
+
+    - name: Install CMake
+      uses: lukka/get-cmake@latest
+
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake g++ libgtest-dev
-    
-    - name: Build project
+        sudo apt-get install -y \
+          build-essential \
+          cmake \
+          libboost-all-dev
+
+    - name: Configure project
       run: |
-        mkdir build
+        mkdir -p build
         cd build
         cmake ..
-        make
-    
+
+    - name: Build project
+      run: |
+        cd build
+        make -j$(nproc)
+
     - name: Run tests
       run: |
         cd build
-        make test
-    
-    - name: Docker build
-      run: docker build .
+        ctest --output-on-failure
+
+  frontend-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm install
+
+    - name: Run frontend tests
+      run: |
+        cd frontend
+        npm test
+
+  deploy:
+    needs: [build, frontend-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Deploy to production
+      run: echo "Deployment steps would go here"
