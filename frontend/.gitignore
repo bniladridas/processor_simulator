@@ -9,8 +9,8 @@
 /coverage
 
 # production
-# Remove the next line to track build folder
-# /build
+# Uncomment to track build folder
+/build
 
 # misc
 .DS_Store
