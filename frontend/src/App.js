@@ -74,7 +74,7 @@ function App() {
 
       const response = await axios({
         method: 'post',
-        url: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8081/convert',
+        url: process.env.REACT_APP_BACKEND_URL || '/convert',
         data: { binary, mode },
         headers: {
           'Content-Type': 'application/json',
