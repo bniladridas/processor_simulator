@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "name": "processor-simulator",
+    "builds": [
+        { "src": "package.json", "use": "@vercel/static-build" }
+    ],
+    "routes": [
+        { "src": "/(.*)", "dest": "/index.html" }
+    ],
+    "env": {
+        "REACT_APP_BACKEND_URL": "https://processor-simulator-backend.vercel.app/convert"
+    }
+}
