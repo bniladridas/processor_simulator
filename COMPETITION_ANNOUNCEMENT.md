@@ -67,7 +67,7 @@ We invite developers, engineers, and tech enthusiasts to:
 
 ### 🔗 Project Links
 - **GitHub**: https://github.com/bniladridas/processor_simulator
-- **Live Demo**: https://processor-simulator-h7gah4tbx-status-dragon.vercel.app
+- **Live Demo**: https://processor-simulator-nmjcxk3nk-status-dragon.vercel.app
 
 ### 📝 Licensing
 MIT Open Source License - Collaborate, Modify, Distribute!
